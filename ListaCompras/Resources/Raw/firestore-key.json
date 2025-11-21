@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "listacomprasapp-a0891",
+  "private_key_id": "406dc6e13df7f387a9d24474029b305ea6732b2a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCekQokHXuhHLho\n17SAtyCmqbnxq8OmvOjbaZa6kbTiWDO5Ku4ARuavPDqoicuNEoFNkvOYKEiNKdSb\nZqr30HOunWRvB0c8a9RxWe4emP4O6bXApsO3ESQK7qGzFDEHKmXisShUIiTTHq5m\nQw+E6KhC7Hob8zLBfsTMafAFbNIKrwSZuguvD8Z8Id7e/j9bkuji8TpaNRmDqV9V\np3bejkTcq7dpet/Acvlu342ddxr8cUgoOgTh+cBb2/XUQuDnM4z9wPlNkYgAvGJ4\ncHnmQ29Uy8qgLIzqQO64ctOJGQ/PmxddtRW5XKGBqs9mY9AS6zjmpx1kITFd81Th\n2Mvb2YDRAgMBAAECggEAALZOtlok4P9bsKovVwNQ3o6/6rRGclbs23do7uOSorrv\nWIiMfcHTwru22Q+YCMUpgYCvHrgnmJgJ1WeA+GXzmbgpPaUUY9K+0deBOJqf9s8u\nkB6aSGsySejydExwlUNSe9HR3YwzCs5beCga8hIywezaoN+Bvdlk5t90QtdPRi8A\nkJ8cwtcPXPMmCPqNQYpDNCNrIL5cRpcaUraEIVFzdpf1sXgeITBNGrb4INKXSTOm\nyWq6j01XA7YSZ2+mbSx3oJNF4q0Q9CO/5oeO09q43meLa+UZuRIA9htHVEcbcLGI\nkacYKC44XxmakFjR6VYd2ZXozZ5b/GVgO+RDeQxs5QKBgQDMIrIL+QvNF+Q5gHTt\nUsiLfOe51E2JRQkpOxXXHhK99PxWt6n87RWp1SsBPPPplinY+6eMgZZLF3UU9RIs\nzMv3HDOmNjc9KkndrkU1x9PN07ikCWTo5noiDcC4A7hselpPQ7Fg17Bft12EWqXJ\nb0Yw2LFlangxYTxBDA2a7f/73wKBgQDG2nb+4fL7aZgdSSbVSdyQE3LNNgqghegv\n4sEEf51ZDwlLKESflmV2udKL+moqVPAtl68xUbCXbvHwqmCo8xFcusoY3IpziZYk\n34Or14HYxNi89yjOfAqdBhoZlmSm/EUxLk/U0tlLXnkS2BetNSkSwC40eMtDwGMI\nS6YN3f4ZTwKBgG6s8PNk120e4vH6H2r8UxatZcVuwYsHDux3yGOVPnwW8yjg8xza\nPcCSfnpxXZzreUzXRAP9zkpwMV5ncK8xafRUKfyXsGNNJjc2YPfDm6YggB8PqNJN\nAzKrWi1qdvb5bzVCck0bI9kBRYaYzwHjfp7FHYjqrLe5DD4IFuhE2WDpAoGAFvdK\nQPu1hWXXpKI7Muz55UXpv1ubdJiijU1B/5QBhzSeXSjEbC4Bf+nMMFB2jHcM2icn\nm6mUnJi6ppH24exYt/32s1JdRyS/y3hpC6KzI2bwpTpiYx6eVy5KO2RMMaD3GMwB\nelHzuKmrkAqXCXEXUkwRygudZjDE/0NFZVqbKy8CgYEAhy3pFAQANiVnnCNqkBue\nPNLoKtVxWnNYMuMXBG0NWp9P7jIG3+1lIh5gMq+KBytHWIRHllwQ3IHlr3nkZyk2\n8Uyffqk5XNIP0O1Tu2Akz7C4cn6tXFSJc+w4VbSvd/UYD5NtTt4x5TPyFxoioZAL\n2C/20iaTI56fS7jbXdXBvUY=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-fbsvc@listacomprasapp-a0891.iam.gserviceaccount.com",
+  "client_id": "102955385690120352384",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40listacomprasapp-a0891.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

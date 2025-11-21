@@ -18,6 +18,9 @@ namespace ListaCompras
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            //firestone
+            builder.Services.AddSingleton<FirestoreService>();
+
 
             return builder.Build();
         }
