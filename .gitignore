@@ -1,55 +1,67 @@
-# Prerequisites
-*.d
+### .NET MAUI / Visual Studio ###
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
 
-# Linker output
-*.ilk
-*.map
-*.exp
+# Build results
+bin/
+obj/
+[Bb]uild/
+[Ll]og/
+out/
 
-# Precompiled Headers
-*.gch
-*.pch
+# MAUI build
+Platforms/**/bin/
+Platforms/**/obj/
+*.xaml.g.cs
+*.xaml.g.i.cs
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+# NuGet
+*.nupkg
+*.snupkg
+**/packages/*
+!**/packages/build/
+*.nuget.props
+*.nuget.targets
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+# Logs
+*.log
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+# Cache
+*.cache
+*.dll.refresh
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*.DS_Store
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
 
-# debug information files
-*.dwo
+# Rider / JetBrains
+.idea/
+*.ipr
+*.iws
+*.iml
+
+# Mobile artifacts
+*.apk
+*.aab
+*.ipa
+
+# Certificados (Android / iOS)
+*.keystore
+*.p12
+*.key
+
+# wwwroot (caso use MAUI Blazor)
+wwwroot/
