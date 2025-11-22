@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:ListaCompras.ViewModels"
+             x:Class="ListaCompras.Views.MainPage">
+
+    <ContentPage.Content>
+        <VerticalStackLayout Padding="20">
+
+            <Label Text="Lista de Compras"
+                   FontSize="28"
+                   HorizontalOptions="Center" />
+
+            <Entry Placeholder="Digite o produto"
+                   Text="{Binding Descricao}" />
+
+            <HorizontalStackLayout Spacing="10" Margin="0,10,0,0">
+                <Button Text="Adicionar" Command="{Binding AdicionarProdutoCmd}" />
+                <Button Text="Remover" Command="{Binding RemoverProdutoCmd}" />
+                <Button Text="Alterar" Command="{Binding AlterarProdutoCmd}" />
+            </HorizontalStackLayout>
+
+            <ListView ItemsSource="{Binding ListaProdutos}"
+                      SelectedItem="{Binding ItemSelecionado}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Descricao}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>

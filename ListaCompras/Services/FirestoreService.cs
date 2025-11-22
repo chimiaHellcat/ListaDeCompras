@@ -1,11 +1,12 @@
 ﻿using Google.Cloud.Firestore;
+using ListaCompras.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ListaCompras
+namespace ListaCompras.Services
 {
     public class FirestoreService
     {
@@ -57,6 +58,57 @@ namespace ListaCompras
                 Console.WriteLine("❌ Erro na comunicação: " + ex.Message);
                 throw;
             }
+        }
+
+
+
+
+        // adicionar produto firestone
+
+
+        public async Task AdicionarProdutoAsync(ProdutoModel produto)
+        {
+            
+            await db.Collection("produtos").AddAsync(new
+            {
+                descricao = produto.Descricao
+            });
+        }
+
+
+        // remover produto 
+        public async Task RemoverProdutoAsync(string id)
+        {
+            await db.Collection("produtos").Document(id).DeleteAsync();
+        }
+
+
+        //atualizar produto
+
+        public async Task AtualizarProdutoAsync(ProdutoModel produto)
+        {
+            await db.Collection("produtos").Document(produto.Id).UpdateAsync("descricao", produto.Descricao);
+        }
+
+
+        // atualizar  a lista em tempo real
+        public void CarregarListaProdutos(Action<List<ProdutoModel>> callback)
+        {
+            db.Collection("produtos").Listen(snapshot =>
+            {
+                var lista = new List<ProdutoModel>();
+
+                foreach (var doc in snapshot.Documents)
+                {
+                    lista.Add(new ProdutoModel
+                    {
+                        Id = doc.Id,
+                        Descricao = doc.GetValue<string>("descricao")
+                    });
+                }
+
+                callback(lista);
+            });
         }
 
     }
