@@ -1,15 +1,13 @@
-﻿namespace ListaCompras
+﻿using ListaCompras.Views;
+
+namespace ListaCompras
 {
     public partial class App : Application
     {
-        public App()
+        public App(MainPage page)
         {
             InitializeComponent();
-        }
-
-        protected override Window CreateWindow(IActivationState? activationState)
-        {
-            return new Window(new AppShell());
+            MainPage = page; // usa a página criada pelo DI
         }
     }
 }

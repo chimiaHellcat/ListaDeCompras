@@ -1,74 +1,74 @@
-﻿using Google.Cloud.Firestore;
+﻿using Google.Apis.Auth.OAuth2;
+using Google.Cloud.Firestore;
 using ListaCompras.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace ListaCompras.Services
 {
     public class FirestoreService
     {
-
         private readonly FirestoreDb db;
 
         public FirestoreService()
         {
-            //caminho chave primaria
-            string filePath = Path.Combine(FileSystem.AppDataDirectory, "firestore-key.json");
+            // Caminho local onde a chave será copiada
+            string localPath = Path.Combine(FileSystem.AppDataDirectory, "firestore-key.json");
 
-
-
-            if (!File.Exists(filePath))
+            // Copia a chave do pacote para o armazenamento interno do app (Android precisa disso!)
+            if (!File.Exists(localPath))
             {
-                using var stream = FileSystem.OpenAppPackageFileAsync("firestore-key.json").Result;
-                using var fs = File.Create(filePath);
-                stream.CopyTo(fs);
+                using var asset = FileSystem.OpenAppPackageFileAsync("firestore-key.json").Result;
+                using var dest = File.Create(localPath);
+                asset.CopyTo(dest);
             }
 
-            Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filePath);
+            // Carrega credenciais pela stream
+            GoogleCredential credential;
 
+            using (var stream = new FileStream(localPath, FileMode.Open, FileAccess.Read))
+            {
+                credential = GoogleCredential.FromStream(stream);
+            }
 
-
-            db = FirestoreDb.Create("listacomprasapp-a0891");
-
-
-
+            // Conecta no Firestore com credenciais
+            db = new FirestoreDbBuilder
+            {
+                ProjectId = "listacomprasapp-a0891",
+                Credential = credential
+            }.Build();
         }
 
         public FirestoreDb GetDb() => db;
 
 
-
-        //testar a conexao
-
-
+        // 🔥 Testar conexão
         public async Task TestarConexao()
         {
             try
             {
                 var col = db.Collection("teste_maui");
-                await col.AddAsync(new { mensagem = "Olá Firebase!", data = DateTime.UtcNow });
+                await col.AddAsync(new
+                {
+                    mensagem = "Olá Firebase!",
+                    data = DateTime.UtcNow
+                });
 
-                Console.WriteLine("🔥 Conexão OK — Dados enviados ao Firestore");
+                Console.WriteLine("🔥 Conectado ao Firestore com sucesso!");
             }
             catch (Exception ex)
             {
-                Console.WriteLine("❌ Erro na comunicação: " + ex.Message);
+                Console.WriteLine("❌ Erro no Firestore: " + ex.Message);
                 throw;
             }
         }
 
 
-
-
-        // adicionar produto firestone
-
-
+        // 🔥 Adicionar produto
         public async Task AdicionarProdutoAsync(ProdutoModel produto)
         {
-            
             await db.Collection("produtos").AddAsync(new
             {
                 descricao = produto.Descricao
@@ -76,25 +76,34 @@ namespace ListaCompras.Services
         }
 
 
-        // remover produto 
+        // 🔥 Remover produto
         public async Task RemoverProdutoAsync(string id)
         {
             await db.Collection("produtos").Document(id).DeleteAsync();
         }
 
 
-        //atualizar produto
-
+        // 🔥 Atualizar produto
         public async Task AtualizarProdutoAsync(ProdutoModel produto)
         {
-            await db.Collection("produtos").Document(produto.Id).UpdateAsync("descricao", produto.Descricao);
+            await db.Collection("produtos")
+                .Document(produto.Id)
+                .UpdateAsync("descricao", produto.Descricao);
         }
 
 
-        // atualizar  a lista em tempo real
+        // 🔥 Realtime listener
+
+
+        private FirestoreChangeListener _listener;
+
         public void CarregarListaProdutos(Action<List<ProdutoModel>> callback)
         {
-            db.Collection("produtos").Listen(snapshot =>
+            // ⚠ Só cria o listener se ainda não existir
+            if (_listener != null)
+                return;
+
+            _listener = db.Collection("produtos").Listen(snapshot =>
             {
                 var lista = new List<ProdutoModel>();
 
@@ -110,6 +119,16 @@ namespace ListaCompras.Services
                 callback(lista);
             });
         }
+
+
+        public void PararListener()
+        {
+            _listener?.StopAsync(); // ← método correto
+            _listener = null;
+        }
+
+
+
 
     }
 }

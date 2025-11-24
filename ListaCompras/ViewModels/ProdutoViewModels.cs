@@ -50,11 +50,31 @@ namespace ListaCompras.ViewModels
             {
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
+                    // Evita processamento se o snapshot é igual ao atual
+                    if (ListaProdutos.Count == produtos.Count)
+                    {
+                        bool iguais = true;
+
+                        for (int i = 0; i < produtos.Count; i++)
+                        {
+                            if (ListaProdutos[i].Id != produtos[i].Id ||
+                                ListaProdutos[i].Descricao != produtos[i].Descricao)
+                            {
+                                iguais = false;
+                                break;
+                            }
+                        }
+
+                        if (iguais)
+                            return; // Não atualiza se o snapshot é duplicado
+                    }
+
                     ListaProdutos.Clear();
                     foreach (var item in produtos)
                         ListaProdutos.Add(item);
                 });
             });
+
         }
 
         private async Task Adicionar()

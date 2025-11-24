@@ -1,12 +1,15 @@
-﻿using ListaCompras.ViewModels;
+﻿using ListaCompras.Services;
+using ListaCompras.ViewModels;
 
-namespace ListaCompras.Views;
-
-public partial class MainPage : ContentPage
+namespace ListaCompras.Views
 {
-    public MainPage(ProdutoViewModel vm)
+    public partial class MainPage : ContentPage
     {
-        InitializeComponent();
-        BindingContext = vm;
+        public MainPage(ProdutoViewModel vm)
+        {
+            InitializeComponent();
+            BindingContext = vm;
+        }
+
     }
 }

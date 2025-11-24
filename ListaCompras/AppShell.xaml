@@ -6,9 +6,8 @@
     xmlns:views="clr-namespace:ListaCompras.Views"
     Title="ListaCompras">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate views:MainPage}"
-        Route="MainPage" />
+    <ShellContent 
+        Route="MainPage"
+        ContentTemplate="{DataTemplate views:MainPage}" />
 
 </Shell>

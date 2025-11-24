@@ -17,13 +17,9 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
-        // Serviços
+        // Firestore como singleton
         builder.Services.AddSingleton<FirestoreService>();
-
-        // ViewModels
         builder.Services.AddSingleton<ProdutoViewModel>();
-
-        // Páginas
         builder.Services.AddSingleton<MainPage>();
 
         return builder.Build();
