@@ -58,10 +58,28 @@ Desktop.ini
 *.aab
 *.ipa
 
-# Certificados (Android / iOS)
+# Certificados e chaves
 *.keystore
 *.p12
 *.key
+*.pem
+
+# Arquivos JSON sensíveis (firebase, gcloud, tokens, secrets)
+firestore-key.json
+google-services.json
+*secret*.json
+*credentials*.json
+*key*.json
+
+# Configurações privadas de ambiente
+*.env
+*.env.local
+*.env.*.local
 
 # wwwroot (caso use MAUI Blazor)
 wwwroot/
+
+# Backups do Visual Studio
+*.orig
+*.tmp
+*.backup
