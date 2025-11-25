@@ -1,6 +1,7 @@
 ﻿using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Firestore;
 using ListaCompras.Models;
+using ListaCompras.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ListaCompras.Services
 {
-    public class FirestoreService
+    public class FirestoreService : BaseViewModel
     {
         private readonly FirestoreDb db;
 

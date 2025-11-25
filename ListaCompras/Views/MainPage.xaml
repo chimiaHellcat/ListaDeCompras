@@ -1,15 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:ListaCompras.ViewModels"
+             xmlns:models="clr-namespace:ListaCompras.Models"
              x:Class="ListaCompras.Views.MainPage">
 
     <ContentPage.Content>
-        <VerticalStackLayout Padding="20">
+        <VerticalStackLayout Padding="20" Spacing="10">
 
             <Label Text="Lista de Compras"
-                   FontSize="28"
-                   HorizontalOptions="Center" />
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"/>
 
             <Entry Placeholder="Digite o produto"
                    Text="{Binding Descricao}" />
@@ -20,14 +22,38 @@
                 <Button Text="Alterar" Command="{Binding AlterarProdutoCmd}" />
             </HorizontalStackLayout>
 
-            <ListView ItemsSource="{Binding ListaProdutos}"
-                      SelectedItem="{Binding ItemSelecionado}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextCell Text="{Binding Descricao}" />
+           
+            <CollectionView ItemsSource="{Binding ListaProdutos}">
+                <CollectionView.ItemTemplate>
+                 
+                    <DataTemplate x:DataType="models:ProdutoModel">
+                        <Grid Padding="8"
+                              ColumnDefinitions="40,*"
+                              Margin="0,5">
+
+                            <CheckBox IsChecked="{Binding IsSelected}"
+                                      VerticalOptions="Center"
+                                      CheckedChanged="CheckBox_CheckedChanged"/>
+
+                            <Label Grid.Column="1"
+                                   Text="{Binding Descricao}"
+                                   VerticalOptions="Center"
+                                   FontSize="18">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label"
+                                                 Binding="{Binding IsSelected}"
+                                                 Value="True">
+                                    
+                                        <Setter Property="TextDecorations" Value="Strikethrough" />
+                                        <Setter Property="TextColor" Value="Gray" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+
+                        </Grid>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
         </VerticalStackLayout>
     </ContentPage.Content>
